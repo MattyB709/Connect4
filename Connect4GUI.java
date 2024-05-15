@@ -17,12 +17,13 @@ public class Connect4GUI extends JFrame {
         setLayout(new BorderLayout());
 
         JPanel boardPanel = new JPanel();
-        boardPanel.setLayout(new GridLayout(ROWS, COLS));
+        boardPanel.setLayout(new GridLayout(ROWS, COLS, 5, 5)); // Add spacing between cells
+        boardPanel.setBackground(new Color(0, 102, 204)); // Set background color of the board
         initializeBoard();
         initializeBoardPanel(boardPanel);
 
         JPanel controlPanel = new JPanel();
-        controlPanel.setLayout(new GridLayout(1, COLS));
+        controlPanel.setLayout(new GridLayout(1, COLS, 5, 5)); // Add spacing between buttons
         initializeControlPanel(controlPanel);
 
         add(controlPanel, BorderLayout.NORTH);
@@ -40,7 +41,7 @@ public class Connect4GUI extends JFrame {
                 cellLabels[i][j] = new JLabel();
                 cellLabels[i][j].setOpaque(true);
                 cellLabels[i][j].setBackground(Color.WHITE);
-                cellLabels[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                cellLabels[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK, 2)); // Thicker border
                 cellLabels[i][j].setHorizontalAlignment(SwingConstants.CENTER);
             }
         }
@@ -58,6 +59,9 @@ public class Connect4GUI extends JFrame {
         for (int i = 0; i < COLS; i++) {
             final int col = i;
             columnButtons[i] = new JButton("Drop");
+            columnButtons[i].setFont(new Font("Arial", Font.BOLD, 16)); // Set font size and style
+            columnButtons[i].setBackground(new Color(255, 204, 0)); // Set button background color
+            columnButtons[i].setForeground(Color.BLACK); // Set button text color
             columnButtons[i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     placeChecker(col);
